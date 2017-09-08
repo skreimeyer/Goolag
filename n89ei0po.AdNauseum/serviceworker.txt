@@ -1,0 +1,8 @@
+6
+
+https://www.washingtonpost.com/
+https://www.washingtonpost.com/notification-sw.js
+false
+{34b452d3-4f74-4900-a9b5-d476536164c7}
+0
+#

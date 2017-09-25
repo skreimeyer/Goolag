@@ -236,14 +236,21 @@ to go to a new domain. Site.com -> Othersite.com',default=0.50)
     c = Crawler(driver)
     links = c.new_domain()
     while True: # TODO tie this condition to an exit other than keyboard interrupt
-        if random.random() < c.crawl:
-            c.new_page(links)
-        elif random.random() < c.domain:
-            links = c.new_domain()
-        elif random.random() < c.reset:
+        try:
+            if random.random() < c.crawl:
+                c.new_page(links)
+            elif random.random() < c.domain:
+                links = c.new_domain()
+            elif random.random() < c.reset:
+                driver = s.refresh(driver)
+                c = Crawler(driver)
+                links = c.new_domain()
+            else:
+                sleep(c.options['interval'])
+        except Exception as e:
+            print('Exception caught:')
+            print(e)
             driver = s.refresh(driver)
             c = Crawler(driver)
             links = c.new_domain()
-        else:
-            sleep(c.options['interval'])
 
